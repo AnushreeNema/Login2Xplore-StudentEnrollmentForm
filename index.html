@@ -11,5 +11,20 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <h2>Student Enrollment Form</h2>
+      <form id="studentForm">
+        <div class="form-group">
+          <label for="roll">Roll No:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="roll"
+            onblur="findRoll(this)"
+          />
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
