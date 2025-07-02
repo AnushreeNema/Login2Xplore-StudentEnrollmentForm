@@ -1,3 +1,9 @@
+// setting up configuration
+var studentToken = "90935021|-31949211575688821|90959345";
+var studentDB = "SCHOOL-DB";
+var studentRel = "STUDENT-TABLE";
+var studentBaseUrl = "http://api.login2explore.com:5577";
+
 // Function for PUT request
 function createPUTRequest(connToken, jsonObj, dbName, relName) {
   var putRequest =
@@ -31,9 +37,35 @@ function executeCommand(reqString, dbBaseUrl, apiEndPointUrl) {
   });
   return jsonObj;
 }
+// resetting
+function resetStudentForm() {
+  $(
+    "#rollInput, #nameInput, #classInput, #dobInput, #addressInput, #enrollInput"
+  ).val("");
+  $("#rollInput").prop("disabled", false).focus();
+  $(
+    "#nameInput, #classInput, #dobInput, #addressInput, #enrollInput, #saveBtn, #editBtn"
+  ).prop("disabled", true);
+  $("#resetBtn").prop("disabled", true);
+}
 
-// setting up configuration
-var studentToken = "90935021|-31949211575688821|90959345";
-var studentDB = "SCHOOL-DB";
-var studentRel = "STUDENT-TABLE";
-var studentBaseUrl = "http://api.login2explore.com:5577";
+// validation
+function validateStudentForm() {
+  if (!$("#rollInput").val()) return $("#rollInput").focus(), "";
+  if (!$("#nameInput").val()) return $("#nameInput").focus(), "";
+  if (!$("#classInput").val()) return $("#classInput").focus(), "";
+  if (!$("#dobInput").val()) return $("#dobInput").focus(), "";
+  if (!$("#addressInput").val()) return $("#addressInput").focus(), "";
+  if (!$("#enrollInput").val()) return $("#enrollInput").focus(), "";
+
+  var jsonStr = {
+    Roll_No: $("#rollInput").val(),
+    Full_Name: $("#nameInput").val(),
+    Class: $("#classInput").val(),
+    Birth_Date: $("#dobInput").val(),
+    Address: $("#addressInput").val(),
+    Enrollment_Date: $("#enrollInput").val(),
+  };
+
+  return JSON.stringify(jsonStr);
+}
