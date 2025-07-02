@@ -69,3 +69,41 @@ function validateStudentForm() {
 
   return JSON.stringify(jsonStr);
 }
+// checking if roll no. exists and updating the state of form
+function checkStudentRecord(ele) {
+  var roll = ele.value;
+  var getReq = {
+    token: studentToken,
+    cmd: "GET_BY_KEY",
+    dbName: studentDB,
+    rel: studentRel,
+    jsonStr: { Roll_No: roll },
+    createTime: false,
+    updateTime: false,
+  };
+  var req = JSON.stringify(getReq);
+
+  jQuery.ajaxSetup({ async: false });
+  var res = executeCommand(req, studentBaseUrl, "/api/irl");
+  jQuery.ajaxSetup({ async: true });
+
+  if (res.status === 400) {
+    $(
+      "#nameInput, #classInput, #dobInput, #addressInput, #enrollInput, #saveBtn, #resetBtn"
+    ).prop("disabled", false);
+    $("#nameInput").focus();
+  } else {
+    var record = JSON.parse(res.data).record;
+    $("#nameInput").val(record.Full_Name);
+    $("#classInput").val(record.Class);
+    $("#dobInput").val(record.Birth_Date);
+    $("#addressInput").val(record.Address);
+    $("#enrollInput").val(record.Enrollment_Date);
+
+    $("#rollInput").prop("disabled", true);
+    $(
+      "#nameInput, #classInput, #dobInput, #addressInput, #enrollInput, #editBtn, #resetBtn"
+    ).prop("disabled", false);
+    $("#saveBtn").prop("disabled", true);
+  }
+}
