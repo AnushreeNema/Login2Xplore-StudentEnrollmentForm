@@ -11,6 +11,7 @@
 - [Project Status](#project-status)
 - [Sources](#sources)
 - [Additional Information](#additional-information)
+- [Deployment Notes](#deployment-notes)
 - [Contributions](#contributions)
 
 ---
