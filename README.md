@@ -90,6 +90,24 @@ The project is fully functional with core features like primary key handling, Sa
 - It demonstrates form handling, API interaction, and frontend logic.
 
 ---
+## Deployment Notes
+
+This project uses JsonPowerDB, which currently operates over HTTP only. However, GitHub Pages enforces HTTPS by default.
+
+### As a result:
+- The deployed version of this project on GitHub Pages does not function correctly due to blocked HTTP API requests.
+- Users may see a 404 error or browser warnings about mixed content when trying to use the live version.
+
+### How to test the project locally:
+1. Clone or download the repository to your local machine.
+2. Open the `index.html` file in any modern web browser.
+3. The application will function correctly in a local environment.
+
+### Recommendation:
+To use this project in a live/hosted environment, consider one of the following:
+- Use a backend that supports HTTPS.
+- Set up a secure proxy to relay requests from HTTPS to HTTP safely.
+---
 
 ### Contributions
 
